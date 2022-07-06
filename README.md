@@ -1,5 +1,4 @@
 # Pacman-JavaScript
 ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)
 <br>
-![Alt Text](https://media.giphy.com/media/d9QiBcfzg64Io/giphy.gif)
-
+<img src="https://media.giphy.com/media/d9QiBcfzg64Io/giphy.gif" width="100" height="100" align="center"/>
