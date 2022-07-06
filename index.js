@@ -6,15 +6,22 @@ class PacMan {
             ['o', 'X', 'o'],
             ['o', 'o', 'Y'],
         ]
-        this.previousPosition = [0, 0];
+        // this.previousPosition = [0, 0];
         this.currentPosition = [0, 0]; // (x, y)
+        // console.log(this.board[1][1])
     }
-
+    
     mvRight() {
-        if (this.currentPosition[0] + 1 < this.board[0].length) {
-            this.updateMap(this.currentPosition, 'o');
-            this.currentPosition[0]++;
-            this.updateMap(this.currentPosition, 'P');
+        if (this.currentPosition[0] + 1 < this.board[0].length ) {
+            if (this.currentPosition[0] + 1 === this.board[1][1]){
+                this.updateMap(this.currentPosition, 'P');
+                this.currentPosition[0]++;
+                this.updateMap(this.currentPosition, 'X');
+            } else {
+                this.updateMap(this.currentPosition, 'o');
+                this.currentPosition[0]++;
+                this.updateMap(this.currentPosition, 'P');
+        } 
         }
     }
 
@@ -40,23 +47,22 @@ class PacMan {
             this.updateMap(this.currentPosition, 'o');
             this.currentPosition[1]++;
             this.updateMap(this.currentPosition, 'P');
-        }
+        } 
     }
     // position = [x, y] symbol = สัญญลักษณ์ที่จะ Update
     updateMap(position, symbol) {
         // const [x, y] = this.currentPosition;
         const x = position[0];
         const y = position[1];
-        if (this.board[y][x]==='Y'){
-            throw Error('You are Dead')
-            
-        }
+        if (this.board[y][x]==='Y') {
+            throw Error('You are Dead')   
+        } 
         this.board[y][x] = symbol
     }
-
-    hitRock() {
-
-    }
+    // hitRock() {
+    //     if (this.updateMap())
+    // }
+    
     printBoard() {
         console.log(this.board.map(y => y.join('')).join('\n'))
     }
