@@ -4,47 +4,59 @@ class PacMan {
         this.board = [
             ['P', 'o', 'o'],
             ['o', 'X', 'o'],
-            ['o', 'o', 'o'],
+            ['o', 'o', 'Y'],
         ]
-        this.currentPosition = [0, 0];
+        this.previousPosition = [0, 0];
+        this.currentPosition = [0, 0]; // (x, y)
     }
 
     mvRight() {
         if (this.currentPosition[0] + 1 < this.board[0].length) {
+            this.updateMap(this.currentPosition, 'o');
             this.currentPosition[0]++;
-            this.updateMap()
+            this.updateMap(this.currentPosition, 'P');
         }
     }
 
     mvLeft() {
         if (this.currentPosition[0] - 1 >= 0) {
+            this.updateMap(this.currentPosition, 'o');
             this.currentPosition[0]--;
-            this.updateMap()
+            this.updateMap(this.currentPosition, 'P');        
         }
     }
 
     mvUp() {
         if (this.currentPosition[1] - 1 >= 0) {
+            this.updateMap(this.currentPosition, 'o');
             this.currentPosition[1]--;
-            this.updateMap()
+            this.updateMap(this.currentPosition, 'P');   
         }
     }
 
     // board.length มีค่าเท่ากับ board[0].length(แกน x ซึ่งเท่ากับ 3)
     mvDown() {
         if (this.currentPosition[1] + 1 < this.board.length) { 
+            this.updateMap(this.currentPosition, 'o');
             this.currentPosition[1]++;
-            this.updateMap()
+            this.updateMap(this.currentPosition, 'P');
         }
     }
-    
-    updateMap() {
+    // position = [x, y] symbol = สัญญลักษณ์ที่จะ Update
+    updateMap(position, symbol) {
         // const [x, y] = this.currentPosition;
-        const x = this.currentPosition[0];
-        const y = this.currentPosition[1];
-        this.board[y][x] = 'P'
+        const x = position[0];
+        const y = position[1];
+        if (this.board[y][x]==='Y'){
+            throw Error('You are Dead')
+            
+        }
+        this.board[y][x] = symbol
     }
 
+    hitRock() {
+
+    }
     printBoard() {
         console.log(this.board.map(y => y.join('')).join('\n'))
     }
@@ -54,21 +66,28 @@ const pacman = new PacMan();
 
 while (true) {
     const input = prompt('Which Way (l, r, u, d): ');
-    switch (input) {
-        case 'l':
-            pacman.mvLeft();
-            break;
-        case 'r':
-            pacman.mvRight();
-            break;
-        case 'u':
-            pacman.mvUp();
-            break;
-        case 'd':
-            pacman.mvDown();
-            break;
-    }
+    try{
+        switch (input) {
+            case 'l':
+                pacman.mvLeft();
+                break;
+            case 'r':
+                pacman.mvRight();
+                break;
+            case 'u':
+                pacman.mvUp();
+                break;
+            case 'd':
+                pacman.mvDown();
+                break;
+        }
     pacman.printBoard();
+    } catch (e){
+        console.log(e);
+        // console.clear();
+        break;
+        
+    }
     // console.log('currentPosition', pacman.currentPosition);
 
 }
