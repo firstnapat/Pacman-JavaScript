@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")({ sigint: true});
+const prompt = require("prompt-sync")({ sigint: true });
 class PacMan {
     constructor() {
         this.board = [
@@ -10,22 +10,28 @@ class PacMan {
     }
 
     mvRight() {
-        if () {
-            
+        if (this.currentPosition[0] + 1 < this.board[0].length) {
+            this.currentPosition[0]++;
         }
-        this.currentPosition[0]++;
     }
 
     mvLeft() {
-        this.currentPosition[0]--;
+        if (this.currentPosition[0] - 1 >= 0) {
+            this.currentPosition[0]--;
+        }
     }
 
     mvUp() {
-        this.currentPosition[1]--;
+        if (this.currentPosition[1] - 1 >= 0) {
+            this.currentPosition[1]--;
+        }
     }
 
     mvDown() {
-        this.currentPosition[1]++;
+        if (this.currentPosition[1] + 1 < this.board.length) {
+            this.currentPosition[1]++;
+        }
+        
     }
 
 
